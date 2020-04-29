@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Utilisateur} from "../../model/utilisateur";
-import {AuthService} from "../../service/auth.service";
-import {Personne} from "../../model/personne";
+import {Utilisateur} from "../../../model/utilisateur";
+import {AuthService} from "../service/auth.service";
+import {Personne} from "../../../model/personne";
 
 @Component({
   selector: 'app-auth',
@@ -47,7 +47,9 @@ export class AuthComponent implements OnInit {
         console.log(this.utilisateur);
         this.authservice.login(this.utilisateur)
         console.log(" =========== after http service ===========");
+        this.router.navigate(["/dashboard"])
         console.log(this.utilisateur);
+
 
 
       } catch (err) {

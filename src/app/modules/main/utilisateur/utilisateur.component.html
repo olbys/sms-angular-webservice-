@@ -1,0 +1,118 @@
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Utilisateur Informations *</ng-template>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Entrez le nom</mat-label>
+        <input matInput placeholder="ex: Jok" formControlName="name" required>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill" class="form-control-m-50">
+        <mat-label>Entrez le prenom</mat-label>
+        <input matInput placeholder="ex: jean Leloup" formControlName="lastname" required>
+      </mat-form-field>
+      <br/>
+      <mat-form-field class="form-control-m-30" appearance="fill" [floatLabel]="floatLabelControl.value">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="devops@integrale.com" formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Date de naissance</mat-label>
+        <input [min]="minCalendar" [max]="maxCalendar" matInput [matDatepicker]="picker" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel> Coordonnées *</ng-template>
+
+
+      <div formGroupName="address">
+        <mat-form-field appearance="fill" class="form-control-m-50">
+          <mat-label>Adresse</mat-label>
+          <input matInput formControlName="street" placeholder="Ex. 265 avenue géneral leclerc"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>code postale</mat-label>
+          <input matInput formControlName="postalcode" placeholder="Ex. 35700"
+                 type="number" inputmode="numeric" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-control-m-30">
+          <mat-label>Ville</mat-label>
+          <input matInput formControlName="city" placeholder="Ex. Rennes"
+                 required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-control-m-30">
+          <mat-label>Pays</mat-label>
+          <input matInput formControlName="country" placeholder="Ex. France" required>
+        </mat-form-field>
+        <br/>
+      </div>
+
+      <mat-form-field appearance="fill" class="form-control-m-50">
+        <mat-label> Téléphone</mat-label>
+        <input matInput formControlName="cellphone" inputmode="numeric" placeholder="Ex. 07 XX XX XX XX" required>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Retour</button>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step>
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Identfiant</ng-template>
+
+      <mat-form-field appearance="fill" class="form-control-m-45">
+        <mat-label>Login</mat-label>
+        <input matInput formControlName="login" inputmode="numeric" placeholder="" >
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-control-m-45">
+        <mat-label>Entrez le mot de passe</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide" >
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-control-m-45">
+        <mat-label> Retapez le mot de passe </mat-label>
+        <input matInput formControlName="confirm_password" type="password">
+      </mat-form-field>
+      <br/>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Annuler</button>
+        <button mat-button>
+          <mat-icon>save_alt</mat-icon>
+          <span> Sauvegarder </span>
+        </button>
+      </div>
+    </form>
+
+
+
+
+  </mat-step>
+</mat-vertical-stepper>
+

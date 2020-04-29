@@ -1,0 +1,26 @@
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.form-control-m-50 {
+  width: 50%;
+  min-width: 300px;
+}
+.form-control-m-30 {
+  width: 30%;
+  min-width: 300px;
+}
+
+.form-control-m-45 {
+  width: 45%;
+  min-width: 300px;
+}
+
+form mat-form-field {
+  margin-right: 1em;
+  margin-left: 1em;
+}

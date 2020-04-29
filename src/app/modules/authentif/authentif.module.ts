@@ -15,25 +15,22 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatGridListModule} from "@angular/material/grid-list";
-
-
-const routes: Routes = [
-  {path: 'authentification', component: AuthComponent}
-];
+import {AuthService} from "./service/auth.service";
+import {AuthentifRoutingModule} from "./authentif-routing.module";
 
 @NgModule({
   declarations: [AuthComponent],
   imports: [
-    RouterModule.forChild(routes),
+    RouterModule,
+    AuthentifRoutingModule,
     ReactiveFormsModule,
     MatToolbarModule, MatInputModule, MatCardModule, MatMenuModule,
     MatIconModule, MatButtonModule, MatTableModule, MatDividerModule,
     MatSlideToggleModule, MatSelectModule, MatOptionModule,
     MatProgressSpinnerModule,MatGridListModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AuthComponent],
-
   exports: [
     AuthComponent,
   ]
