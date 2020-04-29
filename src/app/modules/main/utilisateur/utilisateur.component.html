@@ -1,6 +1,6 @@
 <mat-vertical-stepper #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" >
       <ng-template matStepLabel>Utilisateur Informations *</ng-template>
 
       <mat-form-field appearance="fill">
@@ -21,9 +21,15 @@
 
       <mat-form-field appearance="fill">
         <mat-label> Date de naissance</mat-label>
-        <input [min]="minCalendar" [max]="maxCalendar" matInput [matDatepicker]="picker" disabled>
+        <input [min]="minCalendar" [max]="maxCalendar" formControlName="birthdate"
+               matInput [matDatepicker]="picker" >
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-control-m-50">
+        <mat-label> Téléphone</mat-label>
+        <input matInput formControlName="cellphone" inputmode="numeric" placeholder="Ex. 07 XX XX XX XX" required>
       </mat-form-field>
 
       <div>
@@ -32,12 +38,12 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel> Coordonnées *</ng-template>
 
 
-      <div formGroupName="address">
+      <div formGroupName="adress">
         <mat-form-field appearance="fill" class="form-control-m-50">
           <mat-label>Adresse</mat-label>
           <input matInput formControlName="street" placeholder="Ex. 265 avenue géneral leclerc"
@@ -63,10 +69,6 @@
         <br/>
       </div>
 
-      <mat-form-field appearance="fill" class="form-control-m-50">
-        <mat-label> Téléphone</mat-label>
-        <input matInput formControlName="cellphone" inputmode="numeric" placeholder="Ex. 07 XX XX XX XX" required>
-      </mat-form-field>
 
       <div>
         <button mat-button matStepperPrevious>Retour</button>
@@ -77,7 +79,7 @@
 
 
   <mat-step>
-    <form [formGroup]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" (ngSubmit)="handleClickFirstForm()" #firstform="ngForm" >
       <ng-template matStepLabel>Identfiant</ng-template>
 
       <mat-form-field appearance="fill" class="form-control-m-45">
@@ -101,9 +103,11 @@
       <br/>
 
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Annuler</button>
-        <button mat-button>
+        <button mat-button (click)="stepper.reset()"> Annuler </button>
+        <button mat-button matStepperPrevious> Retour </button>
+        <button mat-button [disabled]="firstFormGroup.invalid ||
+         firstFormGroup.get('password').value != firstFormGroup.get('confirm_password').value"
+         type="submit" (submit)="firstFormGroup">
           <mat-icon>save_alt</mat-icon>
           <span> Sauvegarder </span>
         </button>
