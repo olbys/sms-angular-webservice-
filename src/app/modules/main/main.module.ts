@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {PersonneService} from "./service/personne.service";
 
 @NgModule({
   declarations: [DashboardComponent, ResumeComponent, UtilisateurComponent],
@@ -41,7 +42,7 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatDatepickerModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [PersonneService],
   bootstrap: [DashboardComponent]
 })
 export class MainModule {

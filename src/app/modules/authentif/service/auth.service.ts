@@ -21,6 +21,7 @@ export class AuthService {
 
 
   login(utilisateur_: Utilisateur | null): Utilisateur {
+    if( utilisateur_ == null) return null;
     this.utilisateur = utilisateur_
     this.httpclient.post<Utilisateur>(
       this.environment.getWebservice('login'),

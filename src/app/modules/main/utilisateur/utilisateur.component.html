@@ -79,7 +79,7 @@
 
 
   <mat-step>
-    <form [formGroup]="firstFormGroup" (ngSubmit)="handleClickFirstForm()" #firstform="ngForm" >
+    <form [formGroup]="firstFormGroup"  >
       <ng-template matStepLabel>Identfiant</ng-template>
 
       <mat-form-field appearance="fill" class="form-control-m-45">
@@ -103,11 +103,11 @@
       <br/>
 
       <div>
-        <button mat-button (click)="stepper.reset()"> Annuler </button>
+        <button mat-button (click)="reset()"> Annuler </button>
         <button mat-button matStepperPrevious> Retour </button>
         <button mat-button [disabled]="firstFormGroup.invalid ||
          firstFormGroup.get('password').value != firstFormGroup.get('confirm_password').value"
-         type="submit" (submit)="firstFormGroup">
+         type="submit" (click)="handleClickFirstForm()" >
           <mat-icon>save_alt</mat-icon>
           <span> Sauvegarder </span>
         </button>

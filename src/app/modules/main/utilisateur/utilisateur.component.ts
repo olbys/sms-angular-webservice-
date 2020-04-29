@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Personne} from "../../../model/personne";
 import {Utilisateur} from "../../../model/utilisateur";
+import {PersonneService} from "../service/personne.service";
+import {Subscription} from "rxjs";
+import {MatStepper} from "@angular/material/stepper";
 
 @Component({
   selector: 'app-utilisateur',
@@ -9,6 +12,10 @@ import {Utilisateur} from "../../../model/utilisateur";
   styleUrls: ['./utilisateur.component.css'],
 })
 export class UtilisateurComponent implements OnInit {
+
+  @ViewChild('stepper', { static: true }) stepper: MatStepper ;
+  private servicenotifs : boolean = false ;
+  private notifSubscription : Subscription;
 
   firstFormGroup: FormGroup;
   utilisateur: Personne;
@@ -19,7 +26,7 @@ export class UtilisateurComponent implements OnInit {
   public maxCalendar: Date;
 
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private _personneService : PersonneService) {
     this.utilisateur = new Personne();
     this.minCalendar = new Date(new Date().getFullYear() - 150, 0, 1);
     this.maxCalendar = new Date(new Date().getFullYear() - 1, 12, 31);
@@ -47,12 +54,31 @@ export class UtilisateurComponent implements OnInit {
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
+
+    this.notifSubscription = this._personneService.serviceRequest.subscribe(
+      ( val) =>{
+        console.log(" ==== add  retour utilisateur ====");
+        console.log(val);
+        this.stepper.reset();
+      }
+    )
   }
 
-  handleClickFirstForm() {
-   this.utilisateur = this.hydrateUtilisateur(this.firstFormGroup);
-    console.log(this.utilisateur);
+  reset(){
+    this.stepper.reset();
   }
+
+  async handleClickFirstForm() {
+   this.utilisateur = this.hydrateUtilisateur(this.firstFormGroup);
+    console.log(" formgrpoup");
+    console.log(this.firstFormGroup.getRawValue());
+    if(this.utilisateur != null){
+      this.utilisateur = this._personneService.addPersonne(this.utilisateur);
+   }
+
+  }
+
+
 
 
   /**
@@ -60,13 +86,14 @@ export class UtilisateurComponent implements OnInit {
    * @param formGroup
    */
   public hydrateUtilisateur(formGroup: FormGroup): Personne {
+
     let utilisateurToHydrate = new Personne();
     utilisateurToHydrate.name = this.firstFormGroup.get('name').value;
     utilisateurToHydrate.lastName = this.firstFormGroup.get('lastname').value;
     utilisateurToHydrate.birthDate = this.firstFormGroup.get('birthdate').value;
     utilisateurToHydrate.cellPhone = this.firstFormGroup.get('cellphone').value;
     utilisateurToHydrate.email = this.firstFormGroup.get('email').value;
-    utilisateurToHydrate.login = this.firstFormGroup.get('login').value.toString().trim();
+    utilisateurToHydrate.login = this.firstFormGroup.get('login').value;
     utilisateurToHydrate.password = this.firstFormGroup.get('password').value;
     utilisateurToHydrate.adress = this.firstFormGroup.get('adress').value;
     return utilisateurToHydrate;
