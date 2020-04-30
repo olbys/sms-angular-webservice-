@@ -10,7 +10,7 @@ import {map, shareReplay} from "rxjs/operators";
 })
 export class DashboardComponent implements OnInit {
 
-  navTitle: Array<{ name: string, path: string }>;
+  navTitles: Array<{ name: string, path: string }>;
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -20,12 +20,12 @@ export class DashboardComponent implements OnInit {
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {
-    this.navTitle = [
-      {name:'Dashboard', path:'dashboard'},
-      {name:'authentification', path:'dashboard'}
+    this.navTitles = [
+      {name:'Dashboard', path:''},
+      {name:'Utilisateurs', path:'utilisateur'},
+      {name:'Authentification', path:'/authentification'},
     ]
-
-    console.log(this.navTitle);
+    console.log(this.navTitles);
   }
 
   ngOnInit(): void {

@@ -13,6 +13,7 @@ import {Observable, Subject} from "rxjs";
 export class PersonneService {
 
   serviceRequest = new Subject<Personne>();
+  personnesSubject = new Subject<Personne []>();
 
   constructor(private httpClient: HttpClient,
               private environment: Env,
@@ -20,29 +21,50 @@ export class PersonneService {
   ) {
   }
 
-  public notify(sujet : Personne){
+  public notify(sujet: Personne) {
     this.serviceRequest.next(sujet);
   }
 
-  public addPersonne(dataPersonne: Personne): Personne {
+  private emitPersonnes(personnes: Personne []) {
+    this.personnesSubject.next(personnes.slice());
+  }
+
+  public addPersonne(dataPersonne: Personne) {
     let personne: Personne;
-    // this.httpClient.post("dd", dataPersonne).toPromise();
     this.httpClient.post<Utilisateur>(
       this.environment.getWebservice('addUtilisateur'),
       dataPersonne).subscribe(
       (value) => {
         personne = value;
         this.toastrService.success("Success", "Connexion effectué", {
-          positionClass: 'toast-top-full-width'
+          positionClass: 'toast-top-right'
         })
         this.notify(personne);
       },
       (error) => {
-        this.toastrService.error("Error", "Connexion échoué", {
-          positionClass: 'toast-top-full-width'
+        this.toastrService.error("Error", "Sauvegarde échoué", {
+          positionClass: 'toast-top-right'
         })
       }
     )
-    return personne;
+  }
+
+  public getPersonnes() {
+    this.httpClient.get<Personne[]>(
+      this.environment.getWebservice("getPersonnes")
+    ).subscribe(
+      (values  ) => {
+        let personnes: Personne [];
+        personnes =  values.slice();
+        this.emitPersonnes(personnes);
+      },
+      (error ) =>{
+        console.log(error);
+        this.toastrService.error("Error", "Sauvegarde échoué", {
+          positionClass: 'toast-top-right'
+        })
+      }
+    )
+
   }
 }

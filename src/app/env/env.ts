@@ -4,6 +4,7 @@ export class Env {
   RELATIVE_PATH = new Map<string, string>(
     [
       ["login", "/rest/auth/login"],
+      ["getPersonnes", "/rest/personne"],
       ["addPersonne", "/rest/personne/add"],
       ["addUtilisateur", "/rest/personne/utilisateur/add"]
     ]

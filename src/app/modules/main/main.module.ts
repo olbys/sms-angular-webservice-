@@ -20,9 +20,13 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {PersonneService} from "./service/personne.service";
+import { UtilisateurListComponent } from './utilisateur/utilisateur-list/utilisateur-list.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
-  declarations: [DashboardComponent, ResumeComponent, UtilisateurComponent],
+  declarations: [DashboardComponent, ResumeComponent, UtilisateurComponent, UtilisateurListComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -40,7 +44,10 @@ import {PersonneService} from "./service/personne.service";
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    MatTableModule,
+    ReactiveFormsModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [PersonneService],
   bootstrap: [DashboardComponent]

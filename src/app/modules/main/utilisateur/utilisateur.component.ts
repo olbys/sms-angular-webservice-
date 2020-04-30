@@ -57,8 +57,6 @@ export class UtilisateurComponent implements OnInit {
 
     this.notifSubscription = this._personneService.serviceRequest.subscribe(
       ( val) =>{
-        console.log(" ==== add  retour utilisateur ====");
-        console.log(val);
         this.stepper.reset();
       }
     )
@@ -70,10 +68,8 @@ export class UtilisateurComponent implements OnInit {
 
   async handleClickFirstForm() {
    this.utilisateur = this.hydrateUtilisateur(this.firstFormGroup);
-    console.log(" formgrpoup");
-    console.log(this.firstFormGroup.getRawValue());
     if(this.utilisateur != null){
-      this.utilisateur = this._personneService.addPersonne(this.utilisateur);
+     this._personneService.addPersonne(this.utilisateur);
    }
 
   }

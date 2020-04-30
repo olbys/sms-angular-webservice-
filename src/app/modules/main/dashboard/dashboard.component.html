@@ -5,8 +5,10 @@
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Api-send-sms</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard">Dasboard</a>
-      <a mat-list-item [routerLink]="['utilisateur']"> Utilisateur </a>
+      <a mat-list-item
+         *ngFor="let menu of navTitles" [routerLink]="menu.path" >
+        {{menu.name}}
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
