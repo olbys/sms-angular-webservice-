@@ -1,0 +1,55 @@
+<ng-container class="my-4">
+
+  <div fxLayout="row" class="bg-white py-1 px-1" fxLayout.xs="column">
+    <span fxFlex=""></span>
+    <form [formGroup]="fileForm">
+      <mat-form-field>
+        <ngx-mat-file-input (change)="fileChangeListener($event)" formControlName="requiredfile"
+                            placeholder="importer csv file"
+                            [accept]="'.csv,.xlx'" valuePlaceholder="No file selected"></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+        <mat-error *ngIf="dontreable">
+          ce fichier n'est pas du [csv,xlx]
+        </mat-error>
+        <mat-error *ngIf="fileForm.get('requiredfile').hasError('maxContentSize')">
+          The total size must not
+          exceed {{fileForm.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat}}
+          ({{fileForm.get('requiredfile')?.getError('maxContentSize').actualSize | byteFormat}}).
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div fxLayout="row" class="my-4 " fxLayout.xs="column">
+    <div class="bg-white mr-1 py-3 px-2" fxFlex="65">
+      <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent">
+      </angular-editor>
+      <div class="mt-1" fxLayout.xs="column">
+<!--        <span fxFlex.gt-sm="left"> </span>-->
+        <button class="" color="primary"
+                mat-raised-button>
+          <mat-icon>done_all</mat-icon>
+          <span>  continuer  </span>
+        </button>
+      </div>
+    </div>
+    <div class="bg-white py-3 px-2 " fxFlex="35"
+         fxFlexFill="center center">
+
+      <mat-list role="list">
+        <h2 mat-subheader> Liste des contacts</h2>
+        <mat-list-item class="my-1" role="listitem" *ngFor="let contact of csvRecords; last as last">
+          <ng-container >
+              <ngx-avatar size="40"  initialsSize="2" [name]="contact.nom +' '+ contact.prenom"></ngx-avatar>
+              <span class="ml-1"> {{contact.nom + ' | ' + contact.numero}} </span>
+              <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+          </ng-container>
+        </mat-list-item>
+
+      </mat-list>
+    </div>
+  </div>
+
+
+</ng-container>
+

@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Personne} from "../../../model/personne";
-import {Utilisateur} from "../../../model/utilisateur";
 import {PersonneService} from "../service/personne.service";
 import {Subscription} from "rxjs";
 import {MatStepper} from "@angular/material/stepper";

@@ -8,6 +8,44 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.bg-white {
+  background-color: #fff !important
+}
+
+/** MARGIN TYPE STYLE **/
+
+.mx-1 {
+  margin: auto 1em;
+}
+
+.mr-1 {
+  margin-right: 1em;
+}
+
+.mr-2 {
+  margin-right: 2em;
+}
+
+.ml-1 {
+  margin-left: 1em;
+}
+
+.mr-2 {
+  margin-left: 2em;
+}
+
+.mt-1 {
+  margin-top: 1em !important;
+}
+
+.mb-1 {
+  margin-bottom: 1em !important;
+}
+
+.my-1 {
+  margin: 1em auto;
+}
+
 .mx-2 {
   margin: auto 2em;
 }
@@ -24,27 +62,44 @@ body {
   margin: 4em auto;
 }
 
+/**  END MARGIN TYPE STYLE **/
+
+/** PADDING TYPE STYLE **/
+
+.py-1 {
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
+
+}
+
+.px-1 {
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+}
+
+.py-2 {
+  padding-top: 2em !important;
+  padding-bottom: 2em !important;
+}
+
+.px-2 {
+  padding-left: 2em !important;
+  padding-right: 2em !important;
+}
+
 .py-3 {
-  padding: 3em 0;
+  padding-top: 3em !important;
+  padding-bottom: 3em !important;
 }
 
 .px-3 {
-  padding: 0 3em;
+  padding-left: 3em !important;
+  padding-right: 3em !important;
 }
 
-
-.example-button-row {
-  display: table-cell;
-}
-
-/*.example-button-row button {*/
-/*  display: table-cell;*/
-/*  margin-right: 8px;*/
-/*}*/
-
-
+/** END PADDING TYPE STYLE **/
 
 
 .with-cadre {
-  padding: 1em 3em 5em 3em;
+  padding: 1em 2em 3em 2em;
 }

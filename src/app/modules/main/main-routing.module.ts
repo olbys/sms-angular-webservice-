@@ -4,6 +4,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ResumeComponent} from "./resume/resume.component";
 import {UtilisateurComponent} from "./utilisateur/utilisateur.component";
 import {UtilisateurListComponent} from "./utilisateur/utilisateur-list/utilisateur-list.component";
+import {EditorComponent} from "./editor/editor.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
       {path: '', component: ResumeComponent},
       {path: 'utilisateur', component: UtilisateurListComponent},
       {path: 'utilisateur/add', component: UtilisateurComponent},
+      {path: 'editor/sms', component: EditorComponent},
     ]
   }
 ]

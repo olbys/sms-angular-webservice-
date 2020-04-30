@@ -9,6 +9,7 @@ import {AuthentifModule} from "./modules/authentif/authentif.module";
 import {ToastrModule} from "ngx-toastr";
 import {MainModule} from "./modules/main/main.module";
 import {Env} from "./env/env";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {Env} from "./env/env";
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatProgressBarModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-right',

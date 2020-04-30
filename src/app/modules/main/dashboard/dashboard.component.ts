@@ -23,7 +23,9 @@ export class DashboardComponent implements OnInit {
     this.navTitles = [
       {name:'Dashboard', path:''},
       {name:'Utilisateurs', path:'utilisateur'},
+      {name:'Editors', path:'editor/sms'},
       {name:'Authentification', path:'/authentification'},
+
     ]
     console.log(this.navTitles);
   }
